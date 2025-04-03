@@ -82,6 +82,26 @@ class laser(grid):
         # print(lasersx, lasersy)
         # print(L1, L2, L3, L4)
     
+    def point_coord(self):
+        
+        point_str = []
+        for i in formatted_game:
+        if i.startswith('P'):
+            point_str.append(i)
+        pointx = []
+        pointy = []
+        for i in range(len(point_str)):
+        P = point_str[i].split()
+        pointx.append(int(P[1]))
+        pointy.append(int(P[2]))    
+        px_coords = []
+        py_coords = []
+        point_pair = []
+        for item in range(len(pointx)):
+        px_coords.append(pointx[item])
+        py_coords.append(pointy[item])
+        point_pair.append((px_coords[item],py_coords[item]))
+
     def move_laser(self)   
 
         # moving the laser
