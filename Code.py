@@ -17,40 +17,50 @@ class grid():
             for i in formatted_game:
                 if i.startswith('o') or i.startswith('x'):
                     game_board.append(i)
-            print(game_board)
-    # return grid_coord
-    # def create_bff()
+            self.formatted_game = formatted_game # Added this line to store formatted_game as an instance variable
 
 class blocks(grid):
     
+    def __init__(self, grid_instance):
+      self.formatted_game = grid_instance.formatted_game
+      super().__init__(grid_instance.unsolved_file)
+      
     def block_type(self):
-        reflect = []
-        opaque = []
-        refract = []
+        A = []
+        B = []
+        C = []
         A_group = []
         B_group = []
         C_group = []
-        for i in formatted_game:
-        if i.startswith('A'):
-            A_group.append(i)
-            parts_A = A_group[0].split()
-            A = int(parts_A[1])
-            reflect = A
-        elif i.startswith('B'):
-            B_group.append(i)
-            parts_B = B_group[0].split()
-            B = int(parts_B[1])
-            opaque = B
-        elif i.startswith('C'):
-            C_group.append(i)
-            parts_C = C_group[0].split()
-            C = int(parts_C[1])
-            refract = C
-    return(reflect, opaque, refract)
+        for i in self.formatted_game:
+          if i.startswith('A'):
+              A_group.append(i)
+              parts_A = A_group[0].split()
+              reflect = int(parts_A[1])
+              A = reflect
+          elif i.startswith('B'):
+              B_group.append(i)
+              parts_B = B_group[0].split()
+              opaque = int(parts_B[1])
+              B = opaque
+          elif i.startswith('C'):
+              C_group.append(i)
+              parts_C = C_group[0].split()
+              refract = int(parts_C[1])
+              C = refract
                     
-
-
 class laser_move:
     
+    def __init__(self):
 
+    def moving():
+        # start at 0,0
+        # locate the L in the file and use those coordinates to start
+        # need to find a way to initialise a grid and give it coordinates
+        # using dimensions of the grid learned by 
+        # print(f"This game board is {game_board[1].count('o')} by {len(game_board)}
+        # create a x by y grid
+        # create 2D list? of each point * 3 - i.e. a 3x3=9 board is really a 9x9=81 board
+        # each of those 81 points can be accessed by a block but only in half steps and 
+        # corners are not allowed by laser
 
