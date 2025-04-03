@@ -49,10 +49,29 @@ class blocks(grid):
               refract = int(parts_C[1])
               C = refract
                     
-class laser_move:
+class laser(grid):
     
     def __init__(self):
 
+    
+    def laser_coord():
+        laser_str = []
+        for i in formatted_game:
+        if i.startswith('L'):
+            laser_str.append(i)
+        lasersx = []
+        lasersy = []
+        for i in range(len(laser_str)):
+        L = laser_str[i].split()
+        print(L)
+        lasersx.append(int(L[1]))
+        lasersy.append(int(L[2]))     
+        print(lasersx, lasersy)
+        L1 = lasersx[0], lasersy[0]
+        L2 = lasersx[1], lasersy[1]
+        L3 = lasersx[2], lasersy[2]
+        L4 = lasersx[3], lasersy[3]
+        print(L1, L2, L3, L4)
     def moving():
         # start at 0,0
         # locate the L in the file and use those coordinates to start
