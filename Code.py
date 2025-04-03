@@ -2,11 +2,26 @@
 # another class to udnerstand blocks
 # another class for laser trajectory
 # attribute number to x   
-class grid(unsolved_file, solved_file)
+class grid()
 
-    def __init__(self):
-        
-    def read_bff(unsolved_file):
+    def __init__(self, unsolved_file):
+        self.unsolved_file = unsolved_file
+    
+    def read_bff(self):
+        with open(unsolved_file, 'rb') as file:
+            game = file.read()
+            delim_game = game.decode('utf-8')
+            formatted_game = delim_game.split('\n')
+            print(formatted_game)
+            game_board = []
+            for i in formatted_game:
+                if i.startswith('o') or i.startswith('x'):
+                    game_board.append(i)
+            print(game_board)
+    return grid_coord
+    def create_bff()
+
+    return solved_file
 
 class blocks:
     
@@ -29,8 +44,7 @@ class blocks:
         if C:
             countC = countC+1
 
-class refract(blocks):
-     
+
 class laser_move:
     
 
