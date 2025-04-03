@@ -18,43 +18,47 @@ class grid():
                 if i.startswith('o') or i.startswith('x'):
                     game_board.append(i)
             self.formatted_game = formatted_game # Added this line to store formatted_game as an instance variable
-
+        rows = game_board[1].count('o')
+        cols = len(game_board)
+        dims = rows*cols 
+        game_area = [[0 for x in range(rows)] for y in range(cols)]
+        
 class blocks(grid):
     
     def __init__(self, grid_instance):
       self.formatted_game = grid_instance.formatted_game
       super().__init__(grid_instance.unsolved_file)
-      
-    def block_type(self):
-        A = []
-        B = []
-        C = []
-        A_group = []
-        B_group = []
-        C_group = []
+      self.dims = grid_instance.dims
+      self.game_area = grid_instance.game_area
+
+    def def_blocks(self):  
+        reflect = []
+        opaque = []
+        refract = []
+        A = 0
+        B = 0
+        C = 0
         for i in self.formatted_game:
-          if i.startswith('A'):
-              A_group.append(i)
-              parts_A = A_group[0].split()
-              reflect = int(parts_A[1])
-              A = reflect
-          elif i.startswith('B'):
-              B_group.append(i)
-              parts_B = B_group[0].split()
-              opaque = int(parts_B[1])
-              B = opaque
-          elif i.startswith('C'):
-              C_group.append(i)
-              parts_C = C_group[0].split()
-              refract = int(parts_C[1])
-              C = refract
+            if i.startswith('A'):
+                reflect.append(i)
+                A = int(reflect[0].split()[1])
+            elif i.startswith('B'):
+                opaque.append(i)
+                B = int(opaque[0].split()[1])
+            elif i.startswith('C'):
+                refract.append(i)
+                C = int(refract[0].split()[1])
+        return A, B, C
+
+    def place_blocks(self)
                     
 class laser(grid):
     
     def __init__(self):
-
+        self.formatted_game = grid_instance.formatted_game
+        super().__init__(grid_instance.unsolved_file)
     
-    def laser_coord():
+    def laser_coord(self):
         laser_str = []
         for i in formatted_game:
         if i.startswith('L'):
@@ -63,16 +67,17 @@ class laser(grid):
         lasersy = []
         for i in range(len(laser_str)):
         L = laser_str[i].split()
-        print(L)
+        # print(L)
         lasersx.append(int(L[1]))
         lasersy.append(int(L[2]))     
-        print(lasersx, lasersy)
-        L1 = lasersx[0], lasersy[0]
-        L2 = lasersx[1], lasersy[1]
-        L3 = lasersx[2], lasersy[2]
-        L4 = lasersx[3], lasersy[3]
-        print(L1, L2, L3, L4)
-    def moving():
+        # print(lasersx, lasersy)
+        # print(L1, L2, L3, L4)
+    
+    def move_laser(self)   
+
+        # moving the laser
+        x, y = lasersx[0], lasersy[0]
+         
         # start at 0,0
         # locate the L in the file and use those coordinates to start
         # need to find a way to initialise a grid and give it coordinates
