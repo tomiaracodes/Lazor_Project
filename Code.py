@@ -72,6 +72,15 @@ class laser(grid):
         lasersy.append(int(L[2]))     
         # print(lasersx, lasersy)
         # print(L1, L2, L3, L4)
+        x_coords = []
+        y_coords = []
+        laser_pair = []
+        for item in range(len(lasersx)):
+        x_coords.append(lasersx[item])
+        y_coords.append(lasersy[item])
+        laser_pair.append((x_coords[item],y_coords[item]))     
+        # print(lasersx, lasersy)
+        # print(L1, L2, L3, L4)
     
     def move_laser(self)   
 
