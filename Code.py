@@ -86,26 +86,55 @@ class laser(grid):
         
         point_str = []
         for i in formatted_game:
-        if i.startswith('P'):
-            point_str.append(i)
-        pointx = []
-        pointy = []
-        for i in range(len(point_str)):
-        P = point_str[i].split()
-        pointx.append(int(P[1]))
-        pointy.append(int(P[2]))    
-        px_coords = []
-        py_coords = []
-        point_pair = []
-        for item in range(len(pointx)):
-        px_coords.append(pointx[item])
-        py_coords.append(pointy[item])
-        point_pair.append((px_coords[item],py_coords[item]))
+            if i.startswith('L'):
+                laser_str.append(i)
+                lasersx = []
+                lasersy = []
+                lasersdirx = []
+                lasersdiry = []
+        for i in range(len(laser_str)):
+            L = laser_str[i].split()
+            # print(L)
+            lasersx.append(int(L[1]))
+            lasersy.append(int(L[2]))
+            lasersdirx.append(int(L[3]))
+            lasersdiry.append(int(L[4]))
+            # print(lasersx, lasersy)
+            # print(L1, L2, L3, L4)
+            x_coords = []
+            y_coords = []
+            loc_pair = []
+            dir_pair = []
+        for item in range(len(lasersx)):
+            x_coords.append(lasersx[item])
+            y_coords.append(lasersy[item])
+            loc_pair.append((x_coords[item],y_coords[item]))
+            dir_pair.append((lasersdirx[item], lasersdiry[item]))
 
     def move_laser(self)   
 
         # moving the laser
-        x, y = lasersx[0], lasersy[0]
+        laser_posx = []
+        laser_posy = []
+        laser_pos = []
+        directions = [(1, 1), (1,-1), (-1,1), (-1,-1)]
+
+        # in reflect block: 
+
+        for i in range(len(loc_pair)):
+        start = loc_pair[i]
+        start_dir = dir_pair[i]
+        if loc_pair[i][0] % 2 == 1:
+            laser_movex = loc_pair[i][0]*directions[2][0]
+            laser_posx.append(laser_movex)
+            laser_movey = loc_pair[i][1]*directions[2][1]
+            laser_posy.append(laser_movey)
+        elif loc_pair[i][0] % 2 == 0:
+            laser_movex = loc_pair[i][0]*directions[1][0]
+            laser_posx.append(laser_movex)
+            laser_movey = loc_pair[i][1]*directions[1][1]
+            laser_posy.append(laser_movey)
+        # print(laser_posx, laser_posy)
          
         # start at 0,0
         # locate the L in the file and use those coordinates to start
