@@ -124,7 +124,7 @@ class laser(grid):
         for i in range(len(loc_pair)):
         start = loc_pair[i]
         start_dir = dir_pair[i]
-        if loc_pair[i][0] % 2 == 1:
+        if loc_pair[i][0] % 2 == 1 and  dir_pair[i] == (-1,1): # if x coord of block is odd - continue checking all conditions
             laser_movex = loc_pair[i][0]*directions[2][0]
             laser_posx.append(laser_movex)
             laser_movey = loc_pair[i][1]*directions[2][1]
