@@ -144,6 +144,19 @@ class laser(grid):
                         if game_grid[i] == loc_pair[j]:
                             game_grid[i] = "L"
         
+        # edges?
+        # how to denote edges
+
+        loc_edges = []
+        dir_edges = []
+        for i in range(len(loc_pair)):
+        if loc_pair[i][0] == 0 or loc_pair[i][1] == 0 or loc_pair[i][0] == 2*len(game_area) or loc_pair[i][1] == 2*len(game_area):
+            loc_edges.append(loc_pair[i])
+            dir_edges.append(dir_pair[i])
+            for i in range(len(loc_edges)):
+            if loc_edges[i][0] %2 == 1: # if the x coordinate is odd
+                dir_edges[i][0]
+            elif loc_edges[i][1] %2 == 1: # if y is odd
         # start at 0,0
         # locate the L in the file and use those coordinates to start
         # need to find a way to initialise a grid and give it coordinates
