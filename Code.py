@@ -121,18 +121,18 @@ class laser(grid):
         # in reflect block:
         if A > 0:
             for i in range(len(loc_pair)):
-                start = loc_pair[i]
-                start_dir = dir_pair[i]
-                if loc_pair[i][0] % 2 == 1 and loc_pair[i][1] % 2: # how to move if x,y = odd, even
-                    laser_movex = loc_pair[i][0]*directions[2][0]
-                    laser_posx.append(laser_movex)
-                    laser_movey = loc_pair[i][1]*directions[2][1]
-                    laser_posy.append(laser_movey)
+                if loc_pair[i][0] % 2 == 1 and loc_pair[i][1] % 2 == 0: # how to move if x,y = odd, even 
+                    x_pos = loc_pair[i][0]+dir_pair[i][0]
+                    y_pos = loc_pair[i][1]+dir_pair[i][1]
+                    laser_posx.append(x_pos)
+                    laser_posy.append(y_pos)
                 elif loc_pair[i][1] % 2 == 1 and loc_pair[i][0] %2 == 0: # how to move if x,y = even, odd
-                    laser_movex = loc_pair[i][0]*directions[1][0]
-                    laser_posx.append(laser_movex)
-                    laser_movey = loc_pair[i][1]*directions[1][1]
-                    laser_posy.append(laser_movey)
+                    x_pos = loc_pair[i][0]+dir_pair[i][0]
+                    y_pos = loc_pair[i][1]+dir_pair[i][1]
+                    laser_posx.append(x_pos)
+                    laser_posy.append(y_pos)
+                for item in range(len(laser_posx)):
+                    laser_pos.append((laser_posx[item], laser_posy[item]))
                     # print(laser_posx, laser_posy)
 
                 # how to create a grid and change values to L
