@@ -27,8 +27,19 @@ class grid():
         dims = rows*cols 
         game_area = [[0 for x in range(rows)] for y in range(cols)]
         game_grid = list(itertools.product(range((3*rows)), range((3*cols))))
-
+    
+    def no_go(grid):
+        block_index = []
+        not_allowed = []
+        for i in range(len(game_board)):
+            for j in range(len(game_board)):
+                if game_board[i][j] == 'x':
+                    block_index.append(i*block_size + j)
+                    for i in range(len(block_index)):
+                        i == block_index[i]
+                        not_allowed.append(blocks[block_index[i]])
         
+
 class blocks(grid):
     
     def __init__(self, grid_instance):
@@ -150,14 +161,21 @@ class laser(grid):
                     laser_pos.append((laser_posx[item], laser_posy[item]))
                     # print(laser_posx, laser_posy)
 
+                
+                
+                
+                
+                
+                
+                
                 # how to create a grid and change values to L
-                game_grid = list(itertools.product(range((2*rows)+1), range((2*cols)+1)))
-                start = game_grid[0]
+                # game_grid = list(itertools.product(range((2*rows)+1), range((2*cols)+1)))
+                # start = game_grid[0]
 
-                for j in range(len(loc_pair)):
-                    for i in range(len(game_grid)):
-                        if game_grid[i] == loc_pair[j]:
-                            game_grid[i] = "L"
+                # for j in range(len(loc_pair)):
+                #     for i in range(len(game_grid)):
+                #         if game_grid[i] == loc_pair[j]:
+                #             game_grid[i] = "L"
         
         # edges?
         # how to denote edges
