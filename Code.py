@@ -15,22 +15,25 @@ class grid():
             delim_game = game.decode('utf-8')
             formatted_game = delim_game.split('\n')
             print(formatted_game)
-            game_board = []
+            d_game_board = []
             for i in formatted_game:
                 if i.startswith('o') or i.startswith('x'):
-                    game_board.append(i)
+                    d_game_board.append(i)
             self.formatted_game = formatted_game # Added this line to store formatted_game as an instance variable
+        
+        game_board = [row.replace(" ", "") for row in d_game_board] # to remove spaces
         rows = game_board[0].count("x") + game_board[0].count("o")
         cols = len(game_board)
         dims = rows*cols 
         game_area = [[0 for x in range(rows)] for y in range(cols)]
+        game_grid = list(itertools.product(range((3*rows)), range((3*cols))))
+
         
 class blocks(grid):
     
     def __init__(self, grid_instance):
       self.formatted_game = grid_instance.formatted_game
       super().__init__(grid_instance.unsolved_file)
-      self.dims = grid_instance.dims
       self.game_area = grid_instance.game_area
 
     def def_blocks(self):  
@@ -50,9 +53,21 @@ class blocks(grid):
             elif i.startswith('C'):
                 refract.append(i)
                 C = int(refract[0].split()[1])
-        return A, B, C
+        F_A_list =[] # fixed reflect block
+        F_B_list =[] # fixed opaque block
+        F_C_list =[] # fixed refract block
+        for i in range(len(game_board)):
+            for j in range(len(game_board)):
+            F_A_list.append(game_board[i][j].count("A"))
+            F_B_list.append(game_board[i][j].count("B"))
+            F_C_list.append(game_board[i][j].count("C"))
+        F_A = sum(F_A_list)
+        F_B = sum(F_B_list)
+        F_C = sum(F_C_list)
+        return A, B, C, F_A, F_B, F_C
 
-    def place_blocks(self)
+    def place_blocks(self):
+        
                     
 class laser(grid):
     
@@ -62,7 +77,7 @@ class laser(grid):
     
     def laser_coord(self):
         laser_str = []
-        for i in formatted_game:
+        for i in self.formatted_game:
         if i.startswith('L'):
             laser_str.append(i)
         lasersx = []
@@ -93,7 +108,7 @@ class laser(grid):
     def point_coord(self):
                 
         point_str = []
-        for i in formatted_game:
+        for i in self.formatted_game:
             if i.startswith('P'):
                 point_str.append(i)
         pointx = []
