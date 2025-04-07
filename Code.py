@@ -22,7 +22,7 @@ class grid():
             self.formatted_game = formatted_game # Added this line to store formatted_game as an instance variable
         
         game_board = [row.replace(" ", "") for row in d_game_board] # to remove spaces
-        rows = game_board[0].count("x") + game_board[0].count("o")
+        rows = game_board[0].count("x") + game_board[0].count("o") + game_board[0].count("A") + game_board[0].count("B") + game_board[0].count("C")
         cols = len(game_board)
         dims = rows*cols 
         game_area = [[0 for x in range(rows)] for y in range(cols)]
