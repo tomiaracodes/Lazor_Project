@@ -202,6 +202,64 @@ class Laser():
       self.point_pair = point_pair
     return point_pair
 
+  
+  def reflect(self):
+    if self.A > 0:
+      pass
+      for j in range(len(self.allowed)):
+        itertools.combinations(self.allowed, self.A)
+        for i in (range(self.A)):
+          x1_pos = []
+          y1_pos = []
+          x2_pos = []
+          y2_pos = []
+          new_x1_pos = []
+          new_y1_pos = []
+          new_x2_pos = []
+          new_y2_pos = []
+          x_pos = []
+          y_pos = []
+          laser_pos_reflect = []
+      
+          directions = [(1,1), (1, -1), (-1,1), (-1, -1)]
+      
+          for i in range(len(self.loc_pair)):
+            laser_pos.append(self.loc_pair[i])
+
+            if self.loc_pair[i][0] % 2 == 1 and self.loc_pair[i][1] % 2 == 0: # how to move if x,y = odd, even
+              x1_pos.append(self.loc_pair[i][0]+self.dir_pair[i][0])
+              y1_pos.append(self.loc_pair[i][1]+self.dir_pair[i][1])
+              for j in range(len(x1_pos)):
+                if x1_pos[j] % 2 == 1 and y1_pos[j] % 2 == 0: # treating new coords (odd, even)
+                  new_x1_pos.append(x1_pos[j] + self.dir_pair[i][0]*directions[1][0])
+                  new_y1_pos.append(y1_pos[j] + self.dir_pair[i][1]*directions[1][1])
+              
+                elif x1_pos[j] % 2 == 0 and y1_pos[j] % 2 == 1: # treating new coords (even, odd)
+                  new_x1_pos.append(x1_pos[j] + self.dir_pair[i][0]*directions[2][0])
+                  new_y1_pos.append(y1_pos[j] + self.dir_pair[i][1]*directions[2][1])
+            
+            elif self.loc_pair[i][0] % 2 == 0 and self.loc_pair[i][1] % 2 == 1: # how to move if x,y = even, odd
+              x2_pos.append(self.loc_pair[i][0]+self.dir_pair[i][0])
+              y2_pos.append(self.loc_pair[i][1]+self.dir_pair[i][1])
+         
+              for j in range(len(x2_pos)):
+                
+                if x2_pos[j] % 2 == 1 and y2_pos[j] % 2 == 0: # treating new coords (odd, even)
+                  new_x2_pos.append(x2_pos[j] + self.dir_pair[i][0]*directions[1][0])
+                  new_y2_pos.append(y2_pos[j] + self.dir_pair[i][1]*directions[1][1])
+                
+                elif x2_pos[j] % 2 == 0 and y2_pos[j] % 2 == 1: # treating new coords (even, odd)
+                  new_x2_pos.append(x2_pos[j] + self.dir_pair[i][0]*directions[2][0])
+                  new_y2_pos.append(y2_pos[j] + self.dir_pair[i][1]*directions[2][1])
+
+          laser_pos_reflect.extend([(x, y) for x, y in zip((new_x1_pos), (new_y1_pos))])
+          laser_pos_reflect.extend([(x, y) for x, y in zip((new_x2_pos), (new_y2_pos))])
+    
+    elif self.A == 0:
+        None
+    return laser_pos_reflect
+
+
 # checking that things work
 # open_file = Grid("showstopper_4.bff")
 # read_file = open_file.read_bff()
