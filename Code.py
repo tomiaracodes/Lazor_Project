@@ -531,3 +531,10 @@ class Solver():
   def trace_laser_paths(self):
     all_laser_paths_for_combi = []
     return all_laser_paths_for_combi
+
+open_file = Grid("dark_1.bff")
+blocks = Blocks(open_file)
+laser = Laser(open_file, blocks)
+solver = Solver(open_file, blocks, laser)
+start_game = solver.game_play()
+print(solver.save_solution())
